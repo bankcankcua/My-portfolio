@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analyst Portfolio</title>
+  <meta name="description" content="Portfolio Data Analyst - Lê Ngọc Xuân Nhi. Chuyên phân tích dữ liệu, visualization, machine learning và business intelligence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Particles Background -->
+  <canvas id="particles"></canvas>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="logo">
+        <span class="logo-icon">{ }</span>
+        <span class="logo-text">Data Analyst | Lê Ngọc Xuân Nhi</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active" data-i18n="nav_home">Trang chủ</a></li>
+        <li><a href="#skills" class="nav-link" data-i18n="nav_skills">Kỹ năng</a></li>
+        <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Dự án</a></li>
+        <li><a href="#experience" class="nav-link" data-i18n="nav_experience">Kinh nghiệm</a></li>
+        <li><a href="#blog" class="nav-link" data-i18n="nav_blog">Blog</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Liên hệ</a></li>
+        <li class="lang-switcher">
+          <button class="lang-btn active" data-lang="vi">VI</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse"></span>
+          <span data-i18n="hero_badge">Đang tìm cơ hội mới</span>
+        </div>
+        <h1 class="hero-title">
+          <span data-i18n="hero_greeting">Xin chào, tôi là</span><br />
+          <span class="gradient-text">Lê Ngọc Xuân Nhi</span>
+        </h1>
+        <p class="hero-role">
+          <span class="typing" id="typingText"></span>
+        </p>
+        <p class="hero-desc" data-i18n="hero_desc">
+          Data Analyst với hơn 1 năm kinh nghiệm biến dữ liệu thô thành insights có giá trị kinh doanh. 
+          Chuyên sâu về Python, SQL, Power BI và Machine Learning ứng dụng.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num" data-target="15">0</span>+
+            <span class="stat-label" data-i18n="stat_projects">Dự án</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-target="4">0</span>+
+            <span class="stat-label" data-i18n="stat_years">Năm KN</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-target="30">0</span>+
+            <span class="stat-label" data-i18n="stat_dashboard">Dashboard</span>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fas fa-folder-open"></i> <span data-i18n="btn_projects">Xem dự án</span>
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fas fa-paper-plane"></i> <span data-i18n="btn_contact">Liên hệ</span>
+          </a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/bankcankcua" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/xuannhilengoc1904" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.kaggle.com/ten-cua-ban" target="_blank" rel="noopener" aria-label="Kaggle">
+            <i class="fab fa-kaggle"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="code-window">
+          <div class="code-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="code-title">analysis.py</span>
+          </div>
+          <pre class="code-body"><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> seaborn <span class="kw">as</span> sns
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+
+<span class="cm"># Load & explore data</span>
+df = pd.read_csv(<span class="str">'sales_data.csv'</span>)
+print(df.describe())
+
+<span class="cm"># Feature engineering</span>
+df[<span class="str">'revenue_growth'</span>] = df.groupby(<span class="str">'region'</span>)[<span class="str">'revenue'</span>].pct_change()
+
+<span class="cm"># Build model</span>
+model = RandomForestClassifier(n_estimators=<span class="num">100</span>)
+model.fit(X_train, y_train)
+
+<span class="cm"># Insights unlocked ✓</span>
+print(<span class="str">f"Accuracy: {model.score(X_test, y_test):.2%}"</span>)</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span data-i18n="scroll">Scroll</span>
+      <div class="mouse"></div>
+    </div>
+  </section>
+
+    <!-- Skills Section -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="skills_tag">// Skills</span>
+        <h2 class="section-title" data-i18n="skills_title">Kỹ năng chuyên môn</h2>
+        <p class="section-desc" data-i18n="skills_desc">Công cụ và công nghệ tôi sử dụng hàng ngày để biến data thành quyết định</p>
+      </div>
+
+      <div class="skills-tier-grid">
+        <!-- Core Skills -->
+        <div class="skill-tier skill-tier-core">
+          <div class="skill-tier-header">
+            <i class="fas fa-star"></i>
+            <h3 data-i18n="skill_core_title">Core Skills</h3>
+          </div>
+          <p class="skill-tier-desc" data-i18n="skill_core_desc">Công cụ tôi dùng thành thạo trong công việc hàng ngày</p>
+          <div class="skill-tags">
+            <span class="skill-tag core">Python</span>
+            <span class="skill-tag core">Pandas / NumPy</span>
+            <span class="skill-tag core">SQL</span>
+            <span class="skill-tag core">Power BI / DAX</span>
+            <span class="skill-tag core">Excel (Advanced)</span>
+            <span class="skill-tag core">Git / GitHub</span>
+            <span class="skill-tag core">Matplotlib / Seaborn</span>
+            <span class="skill-tag core">Data Visualization</span>
+            <span class="skill-tag core">Statistical Analysis</span>
+          </div>
+        </div>
+
+        <!-- Familiar With -->
+        <div class="skill-tier skill-tier-familiar">
+          <div class="skill-tier-header">
+            <i class="fas fa-bookmark"></i>
+            <h3 data-i18n="skill_familiar_title">Familiar With</h3>
+          </div>
+          <p class="skill-tier-desc" data-i18n="skill_familiar_desc">Đã sử dụng trong dự án, có thể làm việc khi cần</p>
+          <div class="skill-tags">
+            <span class="skill-tag familiar">Tableau</span>
+            <span class="skill-tag familiar">Looker Studio</span>
+            <span class="skill-tag familiar">Scikit-learn</span>
+            <span class="skill-tag familiar">R</span>
+            <span class="skill-tag familiar">Plotly</span>
+            <span class="skill-tag familiar">AWS (S3, Athena)</span>
+            <span class="skill-tag familiar">dbt</span>
+            <span class="skill-tag familiar">Airflow</span>
+            <span class="skill-tag familiar">BigQuery</span>
+            <span class="skill-tag familiar">Snowflake</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Icons -->
+      <div class="tech-stack">
+        <div class="tech-item" title="Python"><i class="fab fa-python"></i><span>Python</span></div>
+        <div class="tech-item" title="SQL"><i class="fas fa-database"></i><span>SQL</span></div>
+        <div class="tech-item" title="Power BI"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="tech-item" title="Tableau"><i class="fas fa-chart-line"></i><span>Tableau</span></div>
+        <div class="tech-item" title="AWS"><i class="fab fa-aws"></i><span>AWS</span></div>
+        <div class="tech-item" title="Machine Learning"><i class="fas fa-brain"></i><span>ML</span></div>
+        <div class="tech-item" title="Excel"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+        <div class="tech-item" title="Git"><i class="fab fa-git-alt"></i><span>Git</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="projects_tag">// Projects</span>
+        <h2 class="section-title" data-i18n="projects_title">Dự án nổi bật</h2>
+        <p class="section-desc" data-i18n="projects_desc">Một số dự án phân tích dữ liệu tôi đã thực hiện</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="project-placeholder">
+              <i class="fas fa-chart-line"></i>
+              <span>Sales Analytics</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span>Python</span>
+              <span>Power BI</span>
+              <span>SQL</span>
+            </div>
+            <h3 data-i18n="proj1_title">Sales Performance Dashboard</h3>
+            <p data-i18n="proj1_desc">Xây dựng dashboard theo dõi hiệu suất bán hàng real-time cho chuỗi retail 50+ cửa hàng. Giúp tăng 18% conversion rate thông qua phân tích cohort và RFM.</p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-value">+18%</span>
+                <span class="metric-label" data-i18n="metric_conversion">Conversion</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">50+</span>
+                <span class="metric-label" data-i18n="metric_stores">Stores</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">2.1M</span>
+                <span class="metric-label" data-i18n="metric_records">Records</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="project-placeholder">
+              <i class="fas fa-users"></i>
+              <span>Customer Churn</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span>Python</span>
+              <span>Scikit-learn</span>
+              <span>XGBoost</span>
+            </div>
+            <h3 data-i18n="proj2_title">Customer Churn Prediction Model</h3>
+            <p data-i18n="proj2_desc">Xây dựng mô hình dự đoán khách hàng rời bỏ với độ chính xác 89%. Ứng dụng SHAP để giải thích feature importance và đề xuất chiến lược retention.</p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-value">89%</span>
+                <span class="metric-label" data-i18n="metric_accuracy">Accuracy</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">-23%</span>
+                <span class="metric-label" data-i18n="metric_churn">Churn Rate</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">120K</span>
+                <span class="metric-label" data-i18n="metric_customers">Customers</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="project-placeholder">
+              <i class="fas fa-truck"></i>
+              <span>Supply Chain</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span>SQL</span>
+              <span>Python</span>
+              <span>Tableau</span>
+            </div>
+            <h3 data-i18n="proj3_title">Supply Chain Optimization</h3>
+            <p data-i18n="proj3_desc">Phân tích end-to-end chuỗi cung ứng, tối ưu inventory và giảm 12% chi phí logistics. Xây dựng forecasting model với Prophet và ARIMA.</p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-value">-12%</span>
+                <span class="metric-label" data-i18n="metric_logistics">Logistics Cost</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">94%</span>
+                <span class="metric-label" data-i18n="metric_forecast">Forecast Acc.</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">8</span>
+                <span class="metric-label" data-i18n="metric_warehouses">Warehouses</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card">
+          <div class="project-image">
+            <div class="project-overlay">
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="project-placeholder">
+              <i class="fas fa-heartbeat"></i>
+              <span>Healthcare</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span>Python</span>
+              <span>R</span>
+              <span>Power BI</span>
+            </div>
+            <h3 data-i18n="proj4_title">Healthcare Patient Analytics</h3>
+            <p data-i18n="proj4_desc">Phân tích dữ liệu bệnh nhân để tối ưu lịch hẹn và giảm thời gian chờ. Xây dựng cohort analysis và survival analysis cho các chương trình điều trị.</p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-value">-35%</span>
+                <span class="metric-label" data-i18n="metric_wait">Wait Time</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">45K</span>
+                <span class="metric-label" data-i18n="metric_patients">Patients</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">12</span>
+                <span class="metric-label">KPIs</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="experience_tag">// Experience</span>
+        <h2 class="section-title" data-i18n="experience_title">Kinh nghiệm làm việc</h2>
+        <p class="section-desc" data-i18n="experience_desc">Hành trình sự nghiệp của tôi trong lĩnh vực Data Analytics</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 data-i18n="exp1_title">Senior Data Analyst</h3>
+              <span class="timeline-company">TechViet Solutions</span>
+              <span class="timeline-date" data-i18n="exp1_date">03/2023 — Hiện tại</span>
+            </div>
+            <ul>
+              <li data-i18n="exp1_li1">Lead team 3 Data Analysts, xây dựng data culture và self-service BI cho toàn công ty</li>
+              <li data-i18n="exp1_li2">Thiết kế data warehouse và semantic layer, giảm 60% thời gian tạo report</li>
+              <li data-i18n="exp1_li3">Phát triển predictive models hỗ trợ pricing strategy, tăng margin 8%</li>
+              <li data-i18n="exp1_li4">Mentor junior analysts và tổ chức internal workshops về SQL & Power BI</li>
+            </ul>
+            <div class="timeline-tech">
+              <span>Python</span><span>Power BI</span><span>Snowflake</span><span>dbt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 data-i18n="exp2_title">Data Analyst</h3>
+              <span class="timeline-company">Shopee Vietnam</span>
+              <span class="timeline-date">06/2021 — 02/2023</span>
+            </div>
+            <ul>
+              <li data-i18n="exp2_li1">Phân tích hành vi người dùng và conversion funnel cho 10+ sản phẩm chính</li>
+              <li data-i18n="exp2_li2">Xây dựng automated reporting system với Python + Google Sheets API</li>
+              <li data-i18n="exp2_li3">Hỗ trợ A/B testing framework, chạy 50+ experiments với statistical rigor</li>
+              <li data-i18n="exp2_li4">Tạo customer segmentation model dùng RFM + K-Means, tăng retention 15%</li>
+            </ul>
+            <div class="timeline-tech">
+              <span>SQL</span><span>Python</span><span>Tableau</span><span>BigQuery</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 data-i18n="exp3_title">Junior Data Analyst</h3>
+              <span class="timeline-company">FPT Software</span>
+              <span class="timeline-date">08/2020 — 05/2021</span>
+            </div>
+            <ul>
+              <li data-i18n="exp3_li1">Xử lý và làm sạch dữ liệu từ nhiều nguồn (CRM, ERP, web analytics)</li>
+              <li data-i18n="exp3_li2">Tạo weekly/monthly reports cho stakeholders bằng Excel và Power BI</li>
+              <li data-i18n="exp3_li3">Hỗ trợ data migration project và documentation cho data dictionary</li>
+            </ul>
+            <div class="timeline-tech">
+              <span>Excel</span><span>Power BI</span><span>SQL</span><span>Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="section blog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="blog_tag">// Blog</span>
+        <h2 class="section-title" data-i18n="blog_title">Insights & Bài viết</h2>
+        <p class="section-desc" data-i18n="blog_desc">Chia sẻ kiến thức và góc nhìn về Data Analytics</p>
+      </div>
+
+      <div class="blog-grid">
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-date">15 Sep 2025</span>
+            <span class="blog-read" data-i18n="blog1_read">8 min read</span>
+          </div>
+          <h3 data-i18n="blog1_title">5 sai lầm phổ biến khi xây dựng Dashboard</h3>
+          <p data-i18n="blog1_desc">Từ kinh nghiệm review hàng trăm dashboard, tôi tổng hợp những lỗi thường gặp khiến stakeholders không dùng được insight...</p>
+          <a href="#" class="blog-link"><span data-i18n="blog_readmore">Đọc thêm</span> <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-date">28 Aug 2025</span>
+            <span class="blog-read" data-i18n="blog2_read">12 min read</span>
+          </div>
+          <h3 data-i18n="blog2_title">Hướng dẫn A/B Testing đúng cách cho Data Analyst</h3>
+          <p data-i18n="blog2_desc">Sample size, statistical power, multiple testing correction... Tất cả những gì bạn cần biết để chạy experiment có ý nghĩa...</p>
+          <a href="#" class="blog-link"><span data-i18n="blog_readmore">Đọc thêm</span> <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-date">10 Jul 2025</span>
+            <span class="blog-read" data-i18n="blog3_read">6 min read</span>
+          </div>
+          <h3 data-i18n="blog3_title">Tại sao Data Analyst nên học dbt?</h3>
+          <p data-i18n="blog3_desc">Analytics Engineering đang trở thành skill quan trọng. dbt giúp bạn xây dựng data pipeline sạch sẽ, version-controlled và testable...</p>
+          <a href="#" class="blog-link"><span data-i18n="blog_readmore">Đọc thêm</span> <i class="fas fa-arrow-right"></i></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="contact_tag">// Contact</span>
+        <h2 class="section-title" data-i18n="contact_title">Liên hệ với tôi</h2>
+        <p class="section-desc" data-i18n="contact_desc">Bạn có dự án thú vị hoặc cơ hội hợp tác?</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4 data-i18n="contact_email">Email</h4>
+              <a href="mailto:xuannhi@190404gmail.com">xuannhi@190404gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4 data-i18n="contact_location">Địa điểm</h4>
+              <p data-i18n="contact_location_value">Hồ Chí Minh, Việt Nam</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-briefcase"></i>
+            <div>
+              <h4 data-i18n="contact_status">Trạng thái</h4>
+              <p data-i18n="contact_status_value">Open to full-time & freelance</p>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="https://github.com/bankcankcua" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/xuannhilengoc1904" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.kaggle.com/bankcankcua" target="_blank" rel="noopener" aria-label="Kaggle">
+              <i class="fab fa-kaggle"></i>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name" data-i18n="form_name">Họ và tên</label>
+            <input type="text" id="name" name="name" data-i18n-placeholder="form_name_ph" placeholder="Nguyễn Văn A" required />
+          </div>
+          <div class="form-group">
+            <label for="email" data-i18n="form_email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject" data-i18n="form_subject">Chủ đề</label>
+            <input type="text" id="subject" name="subject" data-i18n-placeholder="form_subject_ph" placeholder="Cơ hội hợp tác / Dự án..." />
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="form_message">Nội dung</label>
+            <textarea id="message" name="message" rows="5" data-i18n-placeholder="form_message_ph" placeholder="Mô tả ngắn về yêu cầu của bạn..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <i class="fas fa-paper-plane"></i> <span data-i18n="form_submit">Gửi tin nhắn</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo-icon">{ }</span>
+          <span>Data Analyst | Lê Ngọc Xuân Nhi</span>
+        </div>
+        <p data-i18n="footer_tagline">Turning data into decisions</p>
+        <p class="footer-copy" data-i18n="footer_copy">© 2026 Bankcankcua. Built with ♥ and lots of SQL.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
